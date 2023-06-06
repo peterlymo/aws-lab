@@ -47,6 +47,14 @@ my s3 bucket policy configuration, modify to meet your needs
 ```
 
 # How To Run
+
+```
+https://github.com/peterlymo/aws-lab.git
+cd aws-lab
+```
+
+then 
+
 ```
 bash install.sh <RDS_ENDPOINT> <ACCESS_KEY> <SECRET_KEY> <S3_REGION> <S3_BUCKET_NAME> <RDS_SD_USERNAME> <RDS_DB_PASSWORD> <RDS_DB_NAME> 
 ```
