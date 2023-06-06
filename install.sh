@@ -2,8 +2,9 @@
 
 #!/bin/bash
 echo "--------------------------------"
-echo "Created By peterlymo            |"
+echo -e "\033[1;33mCreated By peterlymo            |"
 echo "--------------------------------"
+
 
 if [ -z "$1" ]
   then
@@ -80,3 +81,4 @@ sudo systemctl restart aws-app
 sudo systemctl restart nginx
 
 echo "-------Done!!!!!!------"
+echo -e "\033[1;33mSNow visit http://$ip"
