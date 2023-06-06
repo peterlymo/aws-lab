@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>EarthQuake</title>
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link href="{{config.STATIC_ROOT}}/css/style.css" rel="stylesheet">
+  <script src="{{config.STATIC_ROOT}}/js/imagesloaded.pkgd.min.js"></script>
+  <script src="{{config.STATIC_ROOT}}/js/masonry.pkgd.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="{{config.STATIC_ROOT}}/js/imagesloaded.pkgd.min.js"></script>
+  <script src="{{config.STATIC_ROOT}}/js/masonry.pkgd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/materialize/0.98.0/js/materialize.min.js"></script>
+
+  <script src="{{config.STATIC_ROOT}}/js/init.js"></script>
+</head>
+
+<body>
+
+  <nav class="nav-extended nav-full-header indigo lighten-2">
+
+    <div class="nav-wrapper container">
+      <a href="/" class="brand-logo"><i class="material-icons">terrain</i>EarthQuake</a>
+
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/">About Us</a></li>
+        {% if not session.user_name %}
+        <li><a href="#signUpModal">SignUp</a></li>
+        <li><a href="#signInModal">SignIn</a></li>
+        {% else %}
+        <li><a href="/signout">SignOut</a></li>
+        <li><a href="#">{{session.user_name}}</a></li>
+        {% endif %}
+      </ul>
+
+
+    </div>
+    <div class="nav-header valign-wrapper">
+      <div id="map"></div>
+
+    </div>
+    <div class="filter-wrapper cyan darken-3">
+      <div class="filter-container pin-top" style="top: 0px;">
+        <ul class="filters container">
+          <li class="active"><a href="#all">All</a></li>
+          <li><a href="#asia">Asia</a></li>
+          <li><a href="#europe">Europe</a></li>
+          <li><a href="#america">America</a></li>
+          <li><a href="#africa">Africa</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+  </nav>
+
+  <div id="signUpModal" class="modal">
+    <div class="modal-content">
+      <h4>SignUp</h4>
+      <div class="row">
+        <form class="col s12" action="/signup" method="post" id="signUpForm">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="name" name = "username" type="text" class="validate">
+              <label for="name">Name</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="email" name="email" type="email" class="validate">
+              <label for="email">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="password" name="password" type="password" class="validate">
+              <label for="password">Password</label>
+            </div>
+          </div>
+
+
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a class="modal-action modal-close waves-effect waves-green btn-flat" onclick="$('#signUpForm').submit();">Agree</a>
+    </div>
+  </div>
+  <div id="signInModal" class="modal">
+    <div class="modal-content">
+      <h4>SignIn</h4>
+      <div class="row">
+        <form class="col s12" action="/signin" method="POST" id="signInForm">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="email2" type="email" class="validate" name="email">
+              <label for="email2">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="password2" type="password" class="validate" name="password">
+              <label for="password2">Password</label>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!"
+      class="modal-action modal-close waves-effect waves-green btn-flat"
+      onclick="$('#signInForm').submit();"
+      >Sign In</a>
+    </div>
+  </div>
+
+
+
+  <div id="postingModal" class="modal">
+    <div class="modal-content">
+      <h4>Posting</h4>
+      <div class="row">
+        <form class="col s12" id="postingForm" enctype="multipart/form-data">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="title" name = "title" type="text" class="validate">
+              <label for="title">Title</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="file-field input-field">
+              <div class="btn">
+                <span>Picture</span>
+                <input type="file" id="picture" name="picture">
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" name = "picture_url" id="picture_url" type="text" placeholder="please upload your picture">
+              </div>
+              <div id="image-container"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="content" name="content" type="text" class="validate">
+              <label for="content">Content</label>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a class="modal-action modal-close waves-effect waves-green btn-flat"
+      onclick="$('#postingForm').submit();">Posting</a>
+    </div>
+  </div>
+
+
+
+
+
+
+  <div id="portfolio" class="section gray">
+    <div class="container">
+      <div class="post row">
+        <div class="col l4 m6 s12 post-item post-filter all posting-card" style="position: absolute; left: 0px; top: 0px;">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">Write</span>
+              <p>Please leave your situation.</p>
+            </div>
+            <div class="card-action">
+              {% if not session.user_name %}
+              <a href="#signInModal">Write</a>
+              {% else %}
+              <a href="#postingModal">Write</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% for post in posts %}
+        <div class="col l4 m6 s12 post-item post-expand post-filter asia">
+          <div class="post-curve-wrapper">
+            <a class="post-cover gray">
+              {% if post.picture_url %}
+              <img class="responsive-img" src="{{config.STATIC_ROOT}}{{post.picture_url}}" alt="placeholder">
+              {% else %}
+              <img class="responsive-img" src="https://placehold.it/400x250" alt="placeholder">
+              {% endif %}
+
+            </a>
+            <div class="post-header">
+              <h5>{{post.title}}</h5>
+              <a href="#">{{post.user_name}}</a>
+              <span class="truncate">{{post.content}}</span>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <script>
+  $(document).ready(function(){
+
+    $('.modal').modal();
+  });
+
+  $('#postingForm').submit(function(e){
+      e.preventDefault();
+
+      var modal = $(this);
+      var title = modal.find('#title').val();
+      var content = modal.find('#content').val();
+      var picture_url = modal.find('#picture_url').val();
+
+      if(!title || !content){
+        alert("Empty form is NONO!!");
+        return;
+      }
+
+      $.ajax({
+        type:"POST",
+        url:'/posting',
+        data:{title:title,content:content,picture_url:picture_url},
+        success:function(args){
+            if(args.result){
+              modal.find('#title').val('');
+              modal.find('#content').val('');
+              modal.modal('close');
+              var htmltxt ='<div class="col l4 m6 s12 post-item post-expand post-filter all">';
+                htmltxt +='<div class="post-curve-wrapper">';
+                htmltxt +='<a class="post-cover gray">';
+                if(picture_url){
+                  htmltxt +='<img class="responsive-img" src="{{config.STATIC_ROOT}}'+picture_url+'" alt="placeholder">';
+                }else{
+                  htmltxt +='<img class="responsive-img" src="http://placehold.it/400x250" alt="placeholder">';
+                }
+
+                htmltxt +='</a>';
+                htmltxt +='<div class="post-header">';
+                htmltxt +='<h5>'+title+'</h5>';
+                htmltxt +='<a href="#">{{session.user_name}}</a>';
+                htmltxt +='<span class="truncate">'+content+'</span>';
+                htmltxt +='</div>';
+                htmltxt +='</div>';
+                htmltxt +='</div>';
+                $(".post").find('.posting-card').after($(htmltxt));
+                $(".post").masonry('reloadItems');
+                $(".post").masonry('layout');
+              }else{
+                alert("error!");
+              }
+        },
+        error:function(e){
+            alert(e.responseText);
+        }
+      });
+  });
+
+  var map;
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 2,
+      scrollwheel: false,
+      center: {lat: -33.865427, lng: 151.196123},
+      mapTypeId: 'terrain'
+    });
+
+    // Create a <script> tag and set the USGS URL as the source.
+    var script = document.createElement('script');
+
+    // This example uses a local copy of the GeoJSON stored at
+    // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+    script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+    document.getElementsByTagName('head')[0].appendChild(script);
+
+    map.data.setStyle(function(feature) {
+      var magnitude = feature.getProperty('mag');
+      return {
+        icon: getCircle(magnitude)
+      };
+    });
+  }
+
+  function getCircle(magnitude) {
+    return {
+      path: google.maps.SymbolPath.CIRCLE,
+      fillColor: 'red',
+      fillOpacity: .2,
+      scale: Math.pow(2, magnitude) / 2,
+      strokeColor: 'white',
+      strokeWeight: .5
+    };
+  }
+
+  function eqfeed_callback(results) {
+    map.data.addGeoJson(results);
+  }
+
+  $('#picture').on('change',function(e){
+    var files = e.target.files;
+    if(!files.length){
+      return;
+    }
+
+    var data = new FormData();
+
+    data.append("file", files[0]);
+    $.ajax({
+      url : '/file_upload',
+      type: 'POST',
+      data : data,
+      cache:false,
+      dataType: 'json',
+      processData: false,
+      contentType: false,
+      success: function(data, textStatus, jqXHR){
+        if(data.result.success){
+          var htmltxt = '<img class="responsive-img" src="'+data.result.path+'" alt="placeholder">';
+          $('#image-container').html(htmltxt);
+          $('#picture_url').val(data.result.url);
+        }else{
+          alert("Fail!");
+        }
+      },
+      error: function(jqXHR, textStatus, errorThrown){
+        console.log("ERROR!");
+      }
+
+
+    });
+
+  });
+
+
+  </script>
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6Wzy5iaibmnkxwSWvzQVlGhMCCsrKK80&callback=initMap&language=en">
+  </script>
+</body>
+</html>
