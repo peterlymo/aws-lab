@@ -1,0 +1,12 @@
+[Unit]
+Description=gunicorn daemon fpr AWS LAB CIVE
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/AWS-LAB
+ExecStart=/home/ubuntu/AWS-LAB/env/bin/gunicorn --workers 3 --bind unix:/home/ubuntu/AWS-LAB/aws-app.sock -m 777 wsgi:app
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,7 @@
+boto3
+flask
+gunicorn
+requests
+pymysql
+werkzeug
+flask_s3
