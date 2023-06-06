@@ -60,5 +60,5 @@ bash install.sh cp424.c8jbakfloyel.us-east-1.rds.amazonaws.com AKIAQU***********
 you are good to go, sometimes things may work as expected, I assume you are an engineer,so google is your friend
 
 # Architecture
-![Architecture](../static/target_architecture_2.png)
+![Architecture](static/target_architecture_2.png)
 
