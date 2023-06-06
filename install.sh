@@ -72,6 +72,7 @@ sudo rm -r /etc/nginx/sites-enabled/aws-app.conf
 sudo rm -r /etc/systemd/system/aws-app.service
 sudo ln -s $(pwd)/aws-app.service /etc/systemd/system
 sudo ln -s $(pwd)/aws-app.conf /etc/nginx/sites-enabled
+sudo chgrp www-data /home/$USER
 
 sudo systemctl daemon-reload
 sudo systemctl start aws-app
