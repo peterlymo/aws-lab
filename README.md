@@ -14,7 +14,7 @@ I have Updated AWS architecture 2 to support new technologies and easy setup, wh
 
 # prerequisites
 
-- EC2-server with ports firewall allowed to be accessed
+- EC2-server with ports firewall allowed to be accessed.
 - S3 bucket with security policies allowed to be accessed, get S3 REGION 
 - RDS database created to get username, password, and database name and rds endpoint
 - allow inbound traffic in RDS so RDS endpoint can be accessed
