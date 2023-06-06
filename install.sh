@@ -2,7 +2,7 @@
 
 #!/bin/bash
 echo "--------------------------------"
-echo -e "\033[1;33mCreated By peterlymo            |"
+echo -e "\032[1;33mCreated By peterlymo            |"
 echo "--------------------------------"
 
 
