@@ -56,7 +56,7 @@ mysql -h $1 -u $6 -P 3306 --password=$7 < db.sql
 sed -i "s?DB_HOST=.*?DB_HOST=\"$1\"?" app.py
 sed -i "s?AWS_ACCESS_KEY_ID=.*?AWS_ACCESS_KEY_ID=\"$2\"?" app.py
 sed -i "s?AWS_SECRET_ACCESS_KEY=.*?AWS_SECRET_ACCESS_KEY=\"$3\"?" app.py
-sed -i "s?REGION=.*?REGION=\"$4\"?" views.py
+sed -i "s?REGION=.*?REGION=\"$4\"?" app.py
 sed -i "s?AWS_BUCKET_NAME=.*?AWS_BUCKET_NAME=\"$5\"?" app.py
 sed -i "s?DB_USER=.*?DB_USER=\"$6\"?" app.py
 sed -i "s?DB_PASSWORD=.*?DB_PASSWORD=\"$7\"?" app.py
