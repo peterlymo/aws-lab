@@ -14,10 +14,6 @@ CREATE TABLE `posts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
--- INSERT INTO `posts` (`id`, `title`, `content`, `user_id`, `picture_url`) VALUES
--- (1, 'Hello', 'CIVE | UDOM!!!!!!', 1, '/uploadedimages/earthquake.jpg');
-
-
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `user_name` varchar(20) NOT NULL,
