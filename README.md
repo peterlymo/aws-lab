@@ -1,8 +1,13 @@
 
 # What's new
-I have Updated AWS architecture 2 to support new technologies and easy setup, where it originally was from https://github.com/thejungwon/AWS/ 
+I have updated the demo code for the AWS architecture 2 to support new technologies and simplify the setup process. The original code can be found at [https://github.com/thejungwon/AWS/](https://github.com/thejungwon/AWS/tree/master/architecture2).
 
-# added supports 
+
+> **Note**
+> You must have AWS account so you can create all services required and remember to understand AWS services before using this script, create account at https://aws.amazon.com/free/ Good Luck!!
+
+
+# Added supports 
 - python3
 - boto3
 - refactored and remove unnecessary code
@@ -12,7 +17,7 @@ I have Updated AWS architecture 2 to support new technologies and easy setup, wh
 - RDS
 - S3
 
-# prerequisites
+# Prerequisites
 
 - EC2-server with ports firewall allowed to be accessed.
 - S3 bucket with security policies allowed to be accessed, get S3 REGION 
@@ -58,14 +63,16 @@ then
 ```
 bash install.sh <RDS_ENDPOINT> <ACCESS_KEY> <SECRET_KEY> <S3_REGION> <S3_BUCKET_NAME> <RDS_SD_USERNAME> <RDS_DB_PASSWORD> <RDS_DB_NAME> 
 ```
-example 
+Example 
 
 ```
 bash install.sh cp424.c8jbakfloyel.us-east-1.rds.amazonaws.com AKIAQU*********** 7xTQPLfOhoL+**************** us-east-1 cp-424-s3 admin pass**** cp424db
 
 ```
 
-you are good to go, sometimes things may work as expected, I assume you are an engineer,so google is your friend
+> **Warning**
+> Now you are ready to go. Occasionally, things may not work as expected, but as an engineer, I trust that you have the skills to troubleshoot and resolve any issues that may arise. Remember that Google is your Friend
+
 
 # Architecture
 ![Architecture](static/target_architecture_2.png)
